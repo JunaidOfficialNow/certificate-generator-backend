@@ -57,6 +57,20 @@ public class CertificateController {
         return ResponseEntity.ok("Success") ;
     }
 
+    @PostMapping("/generate-recognition-certificate")
+    public ResponseEntity<String> generateRecognitionCertificate(@RequestBody RecognitionCertificateBody body) throws Exception {
+        String templatePath = "src/main/resources/templates/4.pdf";
+        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{year}}", body.year);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{SUPERVISOR}}", body.supervisor);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{MANAGER}}", body.manager);
+        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/"+ body.name + ".pdf"));
+        pdfDoc.close();
+        return ResponseEntity.ok("Success") ;
+    }
+
 
 
     @GetMapping("/download")
