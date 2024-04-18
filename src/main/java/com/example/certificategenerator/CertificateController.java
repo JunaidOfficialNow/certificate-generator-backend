@@ -65,7 +65,7 @@ public class CertificateController {
         PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
         pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
         pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{year}}", body.year);
+        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
         pdfDoc.replaceText(PageSelection.firstPage(), "{{SUPERVISOR}}", body.supervisor);
         pdfDoc.replaceText(PageSelection.firstPage(), "{{MANAGER}}", body.manager);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
