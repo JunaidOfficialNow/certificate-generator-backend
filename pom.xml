@@ -24,6 +24,12 @@
 
         <dependency>
             <groupId>com.ironsoftware</groupId>
+            <artifactId>ironpdf-engine-windows-x64</artifactId>
+            <version>2024.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ironsoftware</groupId>
             <artifactId>ironpdf</artifactId>
             <version>2024.3.1</version>
         </dependency>
