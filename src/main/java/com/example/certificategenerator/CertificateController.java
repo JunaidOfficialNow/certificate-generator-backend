@@ -8,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -20,7 +17,7 @@ import java.nio.file.Paths;
 @RequestMapping("/certificates")
 public class CertificateController {
 
-    @PostMapping("/generate")
+    @PostMapping("/generate-participation-certificate")
     public ResponseEntity<String> generateCertificate() throws Exception {
         String templateNo = "1";
         String templatePath = "src/main/resources/templates/" + templateNo + ".pdf";
@@ -30,6 +27,22 @@ public class CertificateController {
         pdfDoc.close();
         return ResponseEntity.ok("Success") ;
     }
+
+    @PostMapping("/generate-achievement-certificate")
+    public ResponseEntity<String> generateAchievementCertificate(@RequestBody AchievementCertificateBody body) throws Exception {
+        String templatePath = "src/main/resources/templates/2.pdf";
+        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative1}}", body.representative1);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative2}}", body.representative2);
+        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/"+ body.name + ".pdf"));
+        pdfDoc.close();
+        return ResponseEntity.ok("Success") ;
+    }
+
+
+
+
 
     @GetMapping("/download")
     public ResponseEntity<FileSystemResource> downloadPdf() {
