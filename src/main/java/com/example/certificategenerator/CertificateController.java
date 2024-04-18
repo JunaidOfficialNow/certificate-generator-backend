@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/certificates")
+@CrossOrigin(origins= "*")
 public class CertificateController {
 
     @PostMapping("/generate-participation-certificate")
@@ -24,7 +25,7 @@ public class CertificateController {
         pdfDoc.replaceText(PageSelection.firstPage(), "RecipientName", body.name);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-achievement-certificate")
@@ -36,7 +37,7 @@ public class CertificateController {
         pdfDoc.replaceText(PageSelection.firstPage(), "{{representative2}}", body.representative2);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-completion-certificate")
@@ -53,7 +54,7 @@ public class CertificateController {
 //        pdfDoc.replaceText(PageSelection.firstPage(), "{{COORDINATOR_NAME}}", body.coordinator_name);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-recognition-certificate")
@@ -67,13 +68,13 @@ public class CertificateController {
         pdfDoc.replaceText(PageSelection.firstPage(), "{{MANAGER}}", body.manager);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
-        return ResponseEntity.ok("Success");
+        return ResponseEntity.ok("{\"success\":true}");
     }
 
 
-    @GetMapping("/download")
-    public ResponseEntity<FileSystemResource> downloadPdf() {
-        String FILE_PATH = "src/main/resources/outputs/sample.pdf";
+    @GetMapping("/download/{filename}")
+    public ResponseEntity<FileSystemResource> downloadPdf(@PathVariable String filename) {
+        String FILE_PATH = "src/main/resources/outputs/" + filename + ".pdf";
         File file = new File(FILE_PATH);
         if (!file.exists()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
