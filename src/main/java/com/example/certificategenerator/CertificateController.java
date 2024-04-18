@@ -22,7 +22,9 @@ public class CertificateController {
     public ResponseEntity<String> generateCertificate(@RequestBody ParticipationCertificateBody body) throws Exception {
         String templatePath = "src/main/resources/templates/1.pdf";
         PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-        pdfDoc.replaceText(PageSelection.firstPage(), "RecipientName", body.name);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{head}}", body.head);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{instructor}}", body.instructor);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
         return ResponseEntity.ok("{\"success\":true}");
