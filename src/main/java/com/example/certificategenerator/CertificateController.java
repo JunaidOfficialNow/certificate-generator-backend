@@ -47,13 +47,10 @@ public class CertificateController {
         String templatePath = "src/main/resources/templates/3.pdf";
         PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
         pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{description}}", body.description);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{course_duration}}", body.course_duration);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{position}}", body.position);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{institution}}", body.institution);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{designation}}", body.designation);
-//        pdfDoc.replaceText(PageSelection.firstPage(), " {{PRINCI_NAME}} ", body.princi_name);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{COORDINATOR_NAME}}", body.coordinator_name);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
+        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{CEO}}", body.CEO);
+        pdfDoc.replaceText(PageSelection.firstPage(), "{{COO}}", body.COO);
         pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
         pdfDoc.close();
         return ResponseEntity.ok("{\"success\":true}");
