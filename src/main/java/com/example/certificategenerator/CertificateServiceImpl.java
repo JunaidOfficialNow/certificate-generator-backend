@@ -76,25 +76,25 @@ public class CertificateServiceImpl implements CertificateService {
         String templatePath = "src/main/resources/templates/3.pdf";
         try {
             Document pdfDocument = new Document(templatePath);
-            TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber("{{NAME}}");
+            TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber("{{name}}");
             pdfDocument.getPages().accept(textFragmentAbsorber);
             TextFragmentCollection textFragmentCollection = textFragmentAbsorber.getTextFragments();
             for (TextFragment textFragment1 : (Iterable<TextFragment>) textFragmentCollection) {
                 textFragment1.setText(body.name);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{FOUNDER}}");
+            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{chief}}");
             pdfDocument.getPages().accept(textFragmentAbsorber2);
             TextFragmentCollection textFragmentCollection2 = textFragmentAbsorber2.getTextFragments();
             for (TextFragment textFragment2 : (Iterable<TextFragment>) textFragmentCollection2) {
-                textFragment2.setText(body.founder);
+                textFragment2.setText(body.chief);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{MANAGER}}");
+            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{mentor}}");
             pdfDocument.getPages().accept(textFragmentAbsorber3);
             TextFragmentCollection textFragmentCollection3 = textFragmentAbsorber3.getTextFragments();
             for (TextFragment textFragment3 : (Iterable<TextFragment>) textFragmentCollection3) {
-                textFragment3.setText(body.manager);
+                textFragment3.setText(body.mentor);
             }
             pdfDocument.save("src/main/resources/outputs/" + body.name + ".pdf");
         } catch (Exception e) {
