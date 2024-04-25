@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class CertificateGeneratorApplication {
+public class CertGeneratorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CertificateGeneratorApplication.class, args);
+        SpringApplication.run(CertGeneratorApplication.class, args);
     }
 
 }

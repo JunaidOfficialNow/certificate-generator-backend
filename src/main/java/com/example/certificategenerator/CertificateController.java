@@ -15,32 +15,32 @@ import java.io.File;
 @CrossOrigin(origins= "*")
 public class CertificateController {
 
-    private final CertificateService service;
-    public CertificateController(CertificateService service) {
+    private final PDFService service;
+    public CertificateController(PDFService service) {
         this.service = service;
     }
 
     @PostMapping("/generate-appreciation-certificate")
-    public ResponseEntity<String> generateCertificate(@RequestBody AppreciationCertificateBody body) throws Exception {
-         this.service.createAppreciationCertificate(body);
+    public ResponseEntity<String> generateCertificate(@RequestBody AppreciationRequest body) throws Exception {
+         this.service.generateAppreciationCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-achievement-certificate")
-    public ResponseEntity<String> generateAchievementCertificate(@RequestBody AchievementCertificateBody body) throws Exception {
-        this.service.createAchievementCertificate(body);
+    public ResponseEntity<String> generateAchievementCertificate(@RequestBody AchievementRequest body) throws Exception {
+        this.service.generateAchievementCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-completion-certificate")
-    public ResponseEntity<String> generateCompletionCertificate(@RequestBody CompletionCertificateBody body) throws Exception {
-        this.service.createCompletionCertificate(body);
+    public ResponseEntity<String> generateCompletionCertificate(@RequestBody CompletionRequest body) throws Exception {
+        this.service.generateCompletionCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-recognition-certificate")
-    public ResponseEntity<String> generateRecognitionCertificate(@RequestBody RecognitionCertificateBody body) throws Exception {
-        this.service.createRecognitionCertificate(body);
+    public ResponseEntity<String> generateRecognitionCertificate(@RequestBody RecognitionRequest body) throws Exception {
+        this.service.generateRecognitionCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 

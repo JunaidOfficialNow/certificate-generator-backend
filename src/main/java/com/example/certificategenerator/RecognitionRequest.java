@@ -1,6 +1,6 @@
 package com.example.certificategenerator;
 
-public class RecognitionCertificateBody {
+public class RecognitionRequest {
     public  String name;
     public String head;
     public String ceo;

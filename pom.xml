@@ -18,9 +18,9 @@
     </properties>
     <repositories>
         <repository>
-            <id>AsposeJavaAPI</id>
-            <name>Aspose Java API</name>
-            <url>https://repository.aspose.com/repo/</url>
+            <id>com.e-iceblue</id>
+            <name>e-iceblue</name>
+            <url>https://repo.e-iceblue.com/nexus/content/groups/public/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -31,12 +31,10 @@
 
 
         <dependency>
-
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose-pdf</artifactId>
-            <version>22.12</version>
+            <groupId>e-iceblue</groupId>
+            <artifactId>spire.pdf</artifactId>
+            <version>10.4.4</version>
         </dependency>
-
 
 
         <dependency>

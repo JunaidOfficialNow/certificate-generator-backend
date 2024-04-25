@@ -1,6 +1,6 @@
 package com.example.certificategenerator;
 
-public class CompletionCertificateBody {
+public class CompletionRequest {
     public String name;
     public String chief;
     public String mentor;
