@@ -108,4 +108,35 @@ public class CertificateServiceImpl implements CertificateService {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void createRecognitionCertificate(RecognitionCertificateBody body) {
+        String templatePath = "src/main/resources/templates/4.pdf";
+        try {
+            Document pdfDocument = new Document(templatePath);
+            TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber("{{name}}");
+            pdfDocument.getPages().accept(textFragmentAbsorber);
+            TextFragmentCollection textFragmentCollection = textFragmentAbsorber.getTextFragments();
+            for (TextFragment textFragment1 : (Iterable<TextFragment>) textFragmentCollection) {
+                textFragment1.setText(body.name);
+            }
+
+            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{head}}");
+            pdfDocument.getPages().accept(textFragmentAbsorber2);
+            TextFragmentCollection textFragmentCollection2 = textFragmentAbsorber2.getTextFragments();
+            for (TextFragment textFragment2 : (Iterable<TextFragment>) textFragmentCollection2) {
+                textFragment2.setText(body.head);
+            }
+
+            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{coach}}");
+            pdfDocument.getPages().accept(textFragmentAbsorber3);
+            TextFragmentCollection textFragmentCollection3 = textFragmentAbsorber3.getTextFragments();
+            for (TextFragment textFragment3 : (Iterable<TextFragment>) textFragmentCollection3) {
+                textFragment3.setText(body.coach);
+            }
+            pdfDocument.save("src/main/resources/outputs/" + body.name + ".pdf");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
