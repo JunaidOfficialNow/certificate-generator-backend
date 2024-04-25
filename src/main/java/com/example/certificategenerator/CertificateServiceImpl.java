@@ -52,25 +52,18 @@ public class CertificateServiceImpl implements CertificateService {
                 textFragment1.setText(body.name);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{field}}");
-            pdfDocument.getPages().accept(textFragmentAbsorber2);
-            TextFragmentCollection textFragmentCollection2 = textFragmentAbsorber2.getTextFragments();
-            for (TextFragment textFragment2 : (Iterable<TextFragment>) textFragmentCollection2) {
-                textFragment2.setText(body.field);
-            }
-
-            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{head}}");
+            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{representative1}}");
             pdfDocument.getPages().accept(textFragmentAbsorber3);
             TextFragmentCollection textFragmentCollection3 = textFragmentAbsorber3.getTextFragments();
             for (TextFragment textFragment3 : (Iterable<TextFragment>) textFragmentCollection3) {
-                textFragment3.setText(body.head);
+                textFragment3.setText(body.representative1);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber4 = new TextFragmentAbsorber("{{mentor}}");
+            TextFragmentAbsorber textFragmentAbsorber4 = new TextFragmentAbsorber("{{representative2}}");
             pdfDocument.getPages().accept(textFragmentAbsorber4);
             TextFragmentCollection textFragmentCollection4 = textFragmentAbsorber4.getTextFragments();
             for (TextFragment textFragment3 : (Iterable<TextFragment>) textFragmentCollection4) {
-                textFragment3.setText(body.mentor);
+                textFragment3.setText(body.representative2);
             }
             pdfDocument.save("src/main/resources/outputs/" + body.name + ".pdf");
         } catch (Exception e) {
