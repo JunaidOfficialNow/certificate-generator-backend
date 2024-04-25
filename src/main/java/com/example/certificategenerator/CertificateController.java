@@ -1,14 +1,13 @@
 package com.example.certificategenerator;
 
 
-import com.ironsoftware.ironpdf.PdfDocument;
-import com.ironsoftware.ironpdf.edit.PageSelection;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.aspose.pdf.*;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -18,55 +17,54 @@ import java.nio.file.Paths;
 @CrossOrigin(origins= "*")
 public class CertificateController {
 
+    private final CertificateService service;
+    public CertificateController(CertificateService service) {
+        this.service = service;
+    }
+
     @PostMapping("/generate-participation-certificate")
     public ResponseEntity<String> generateCertificate(@RequestBody ParticipationCertificateBody body) throws Exception {
-        String templatePath = "src/main/resources/templates/1.pdf";
-        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{head}}", body.head);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{instructor}}", body.instructor);
-        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-        pdfDoc.close();
+         this.service.createParticipationCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-achievement-certificate")
     public ResponseEntity<String> generateAchievementCertificate(@RequestBody AchievementCertificateBody body) throws Exception {
         String templatePath = "src/main/resources/templates/2.pdf";
-        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative1}}", body.representative1);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative2}}", body.representative2);
-        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-        pdfDoc.close();
+//        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative1}}", body.representative1);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative2}}", body.representative2);
+//        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
+//        pdfDoc.close();
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-completion-certificate")
     public ResponseEntity<String> generateCompletionCertificate(@RequestBody CompletionCertificateBody body) throws Exception {
         String templatePath = "src/main/resources/templates/3.pdf";
-        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
-        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{CEO}}", body.CEO);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{COO}}", body.COO);
-        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-        pdfDoc.close();
+//        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{CEO}}", body.CEO);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{COO}}", body.COO);
+//        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
+//        pdfDoc.close();
         return ResponseEntity.ok("{\"success\":true}");
     }
 
     @PostMapping("/generate-recognition-certificate")
     public ResponseEntity<String> generateRecognitionCertificate(@RequestBody RecognitionCertificateBody body) throws Exception {
         String templatePath = "src/main/resources/templates/4.pdf";
-        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
-        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{SUPERVISOR}}", body.supervisor);
-        pdfDoc.replaceText(PageSelection.firstPage(), "{{MANAGER}}", body.manager);
-        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-        pdfDoc.close();
+//        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{SUPERVISOR}}", body.supervisor);
+//        pdfDoc.replaceText(PageSelection.firstPage(), "{{MANAGER}}", body.manager);
+//        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
+//        pdfDoc.close();
         return ResponseEntity.ok("{\"success\":true}");
     }
 
