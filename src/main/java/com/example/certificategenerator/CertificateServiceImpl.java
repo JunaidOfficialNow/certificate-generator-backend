@@ -21,18 +21,18 @@ public class CertificateServiceImpl implements CertificateService {
                 textFragment1.setText(body.name);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{representative1}}");
+            TextFragmentAbsorber textFragmentAbsorber2 = new TextFragmentAbsorber("{{supervisor}}");
             pdfDocument.getPages().accept(textFragmentAbsorber2);
             TextFragmentCollection textFragmentCollection2 = textFragmentAbsorber2.getTextFragments();
             for (TextFragment textFragment2 : (Iterable<TextFragment>) textFragmentCollection2) {
-                textFragment2.setText(body.representative1);
+                textFragment2.setText(body.supervisor);
             }
 
-            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{representative2}}");
+            TextFragmentAbsorber textFragmentAbsorber3 = new TextFragmentAbsorber("{{manager}}");
             pdfDocument.getPages().accept(textFragmentAbsorber3);
             TextFragmentCollection textFragmentCollection3 = textFragmentAbsorber3.getTextFragments();
             for (TextFragment textFragment3 : (Iterable<TextFragment>) textFragmentCollection3) {
-                textFragment3.setText(body.representative2);
+                textFragment3.setText(body.manager);
             }
             pdfDocument.save("src/main/resources/outputs/" + body.name + ".pdf");
         } catch (Exception e) {
