@@ -28,13 +28,7 @@ public class CertificateController {
 
     @PostMapping("/generate-achievement-certificate")
     public ResponseEntity<String> generateAchievementCertificate(@RequestBody AchievementCertificateBody body) throws Exception {
-        String templatePath = "src/main/resources/templates/2.pdf";
-//        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative1}}", body.representative1);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{representative2}}", body.representative2);
-//        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-//        pdfDoc.close();
+        this.service.createAchievementCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
