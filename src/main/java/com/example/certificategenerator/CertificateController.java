@@ -7,10 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.aspose.pdf.*;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/certificates")
@@ -22,9 +20,9 @@ public class CertificateController {
         this.service = service;
     }
 
-    @PostMapping("/generate-participation-certificate")
-    public ResponseEntity<String> generateCertificate(@RequestBody ParticipationCertificateBody body) throws Exception {
-         this.service.createParticipationCertificate(body);
+    @PostMapping("/generate-appreciation-certificate")
+    public ResponseEntity<String> generateCertificate(@RequestBody AppreciationCertificateBody body) throws Exception {
+         this.service.createAppreciationCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
