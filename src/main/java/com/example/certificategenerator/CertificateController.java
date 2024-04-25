@@ -34,15 +34,7 @@ public class CertificateController {
 
     @PostMapping("/generate-completion-certificate")
     public ResponseEntity<String> generateCompletionCertificate(@RequestBody CompletionCertificateBody body) throws Exception {
-        String templatePath = "src/main/resources/templates/3.pdf";
-//        PdfDocument pdfDoc = PdfDocument.fromFile(Paths.get(templatePath));
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{name}}", body.name);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{month}}", body.month);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "year", body.year);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{CEO}}", body.CEO);
-//        pdfDoc.replaceText(PageSelection.firstPage(), "{{COO}}", body.COO);
-//        pdfDoc.saveAs(Paths.get("src/main/resources/outputs/" + body.name + ".pdf"));
-//        pdfDoc.close();
+        this.service.createCompletionCertificate(body);
         return ResponseEntity.ok("{\"success\":true}");
     }
 
